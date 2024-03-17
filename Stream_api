@@ -1,0 +1,62 @@
+/*package whatever //do not write package name here */
+
+import java.io.*;
+import java.util.*;
+
+//Add these 2 imports
+import java.util.stream.Collectors;
+import java.util.stream.Stream;  
+/* Importing java.util.* does not automatically include sub-packages like java.util.stream. 
+You need to import the specific classes or packages you are using. 
+In this case, you need to import java.util.stream.Stream and java.util.stream.Collectors.
+*/
+
+
+//Usage of Stream api 
+
+class User {
+    private String name;
+    private String phone;
+    private List<String> email;
+    
+    public User(String name, String phone, List<String> email) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public String getPhone() {
+        return phone;
+    }
+    
+    public List<String> getEmail() {
+        return email;
+    }
+}
+
+
+class Gfg {
+	public static void main (String[] args) {
+	    List<User> users = Stream.of(
+	        new User("user1", "9234", Arrays.asList("abc1@gmail.com", "abc2@gmail.com")),
+	        new User("user2", "2345", Arrays.asList("abc3@gmail.com", "abc4@gmail.com"))
+	        ).collect(Collectors.toList());
+		
+		List<List<String>> phnNumber = users.stream().map(User::getEmail).collect(Collectors.toList());
+		
+		System.out.println(phnNumber);
+	}
+}
+
+O/p: [[abc1@gmail.com, abc2@gmail.com], [abc3@gmail.com, abc4@gmail.com]]
+
+
+// List<String> phnNumber = users.stream().map(User::getPhone).collect(Collectors.toList());
+		
+		System.out.println(phnNumber);
+
+o/p: [9234, 2345]
