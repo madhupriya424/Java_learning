@@ -1,0 +1,45 @@
+//WAP to find the freq of each character:
+
+/*package whatever //do not write package name here */
+
+import java.io.*;
+import java.util.*;
+import java.util.function.Function;
+import static java.util.stream.Collectors.*;
+
+class GFG {
+    //frequency of each charater by using stream
+	public static void main (String[] args) {
+	    String input = "Basanat";
+	    
+	    Map<String, Long> countMap =  Arrays.stream(input.split(""))
+	    .collect(groupingBy(
+	        Function.identity(), counting()
+	        ));
+		System.out.println("Output: "+countMap);
+	}
+}
+
+/* 
+1. Convert the string into the array 
+2. Split based on single quotes
+*/
+
+O/P: Output: {a=3, B=1, s=1, t=1, n=1}
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+Here's a simplified example demonstrating the usage of groupBy:
+List<String> words = Arrays.asList("apple", "banana", "pear", "orange", "peach");
+
+Map<Character, List<String>> groupedByFirstLetter = 
+    words.stream()
+         .collect(Collectors.groupingBy(s -> s.charAt(0)));
+
+System.out.println(groupedByFirstLetter);
+
+{a=[apple], b=[banana], p=[pear, peach], o=[orange]}
+
+In this example, we're grouping a list of words by their first letter. The result is a map where each key is a first letter, and the corresponding value is a list of words starting with that letter.
+
+For example, you might want to group a list of objects by their category, age, size, or any other characteristic they have in common.
+The groupBy operation can also be parallelized, allowing for efficient processing of large datasets in parallel streams.
